@@ -119,10 +119,7 @@ class CategoryController @Inject() (
       .bindFromRequest().fold(
         // エラー時遷移
         (formWithErrors: Form[CategoryInsertFormData]) => {
-
-          for {
-            categoryList <- CategoryRepository.getAll
-          } yield {
+          Future {
             BadRequest(
               views.html.category.insert(
                 ViewValueCategoryEdit(
